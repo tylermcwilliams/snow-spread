@@ -1,0 +1,15 @@
+﻿[
+  {
+    "file": "survival:blocktypes/liquid/snowlayer",
+    "op": "replace",
+    "path": "/behaviors/0/name",
+    "value": "StackedUnstableFalling"
+  },
+
+  {
+    "file": "survival:blocktypes/liquid/snowlayer",
+    "op": "replace",
+    "path": "/class",
+    "value": "BlockSpreadable"
+  }
+]
