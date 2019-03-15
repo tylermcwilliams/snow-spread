@@ -102,15 +102,16 @@ namespace Vintagestory.GameContent
             else
             {
                 Block blockAtFinalPos = World.BlockAccessor.GetBlock(pos);
-                
-     
+
+
                 if (blockAtFinalPos.Code.Path.Split('-')[0] == Block.Code.Path.Split('-')[0])
                 {
                     // need to check for fullblock true
                     int layer = 0;
                     int.TryParse(Block.Code.Path.Split('-')[1], out layer);
                     ((BlockSpreadable)blockAtFinalPos).FallBlock(World, pos, layer);
-                } else
+                }
+                else
                 {
                     World.BlockAccessor.SetBlock(Block.BlockId, pos);
                 }
@@ -171,9 +172,13 @@ namespace Vintagestory.GameContent
         private bool IsReplaceableBlock(BlockPos pos)
         {
             Block blockAtFinalPos = World.BlockAccessor.GetBlock(pos);
-            if(blockAtFinalPos.Code.Path.Split('-')[0] == Block.Code.Path.Split('-')[0])
+            if (blockAtFinalPos.Code.Path.Split('-')[0] == Block.Code.Path.Split('-')[0])
             {
                 return true;
+            }
+            else if (blockAtFinalPos.BlockMaterial == EnumBlockMaterial.Liquid)
+            {
+                return false;
             }
 
             return (blockAtFinalPos != null && (blockAtFinalPos.IsReplacableBy(Block)));

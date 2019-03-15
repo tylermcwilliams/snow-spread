@@ -31,6 +31,7 @@ namespace Vintagestory.GameContent
             {
                 Block nextBlock = ((BlockSpreadable)block).GetNextLayer(world);
                 world.BlockAccessor.SetBlock(nextBlock.BlockId, blockSel.Position.AddCopy(blockSel.Face.GetOpposite()));
+                nextBlock.GetBehavior<BlockBehaviorSpreadableFalling>().TrySpreading(world, blockSel.Position.AddCopy(blockSel.Face.GetOpposite()));
 
                 return true;
             }
@@ -41,10 +42,12 @@ namespace Vintagestory.GameContent
             {
                 return false;
             }
-
+          
             base.TryPlaceBlock(world, byPlayer, itemstack, blockSel);
             return true;
         }
+
+        
 
         #region
         // Falling stack
